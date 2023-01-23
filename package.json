@@ -1,0 +1,23 @@
+{
+  "name": "spenders",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "generate": "ts-node src/index.ts",
+    "generate-folders": "ts-node src/generateFolders.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.11.18",
+    "list-github-dir-content": "^3.0.0",
+    "node-fetch": "^3.3.0",
+    "p-map": "^5.5.0",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
+}

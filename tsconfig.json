@@ -1,0 +1,23 @@
+{ 
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "downlevelIteration":true,
+        "isolatedModules": false,
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "noEmit": false,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "strict": true,
+        "target": "ES2021",
+        "typeRoots": ["./node_modules/@types", "src/typings"],
+        "experimentalDecorators": true,
+        "useUnknownInCatchVariables": false,
+        "noImplicitAny": false
+    }
+}
