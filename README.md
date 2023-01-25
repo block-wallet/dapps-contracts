@@ -45,7 +45,7 @@ We use two different data-sources that gathers the contracts along with their ow
 
 #### 2.1 revoke.cash
 
-This data-source provides an small set of contracts with their owner name. There is no way to identify thw owner website or logo.
+This data-source provides an small set of contracts with their owner name. There is no way to identify the owner website or logo.
 
 #### 2.2 ethereum-list
 
