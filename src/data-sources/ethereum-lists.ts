@@ -1,12 +1,12 @@
-import { ContractsCache } from "./utils/cache";
-import type { DappsFile } from "./typings/types";
+import { ContractsCache } from "../utils/cache";
+import type { DappsFile } from "../typings/types";
 import {
   downloadAllDirectoryFilesFromURL,
   fetchPublicFile,
   listFilesFromDirectory,
-} from "./githubDownloader";
-import { spenderNameToKey } from "./utils/utils";
-import config from "../config";
+} from "../utils/github";
+import { dappNameToKey } from "../utils/utils";
+import config from "../../config";
 import path from "path";
 
 interface EthereumListContractFileContent {
@@ -38,6 +38,10 @@ export function decodePath(path: string): {
   };
 }
 
+function toProjectFilePath(fileName: string) {
+  return `projects/${fileName}.json`;
+}
+
 export async function generate(
   contractsCache: ContractsCache
 ): Promise<DappsFile> {
@@ -45,57 +49,42 @@ export async function generate(
     await downloadAllDirectoryFilesFromURL<EthereumListContractFileContent>(
       new URL(ETHEREUMLIST_CONTRACTS_URL),
       {
-        concurrency: 1000,
         isCached(filePath: string) {
           const { chainId, contractAddress } = decodePath(filePath);
           return contractsCache.isCached(chainId, contractAddress);
         },
+        concurrency: 1000,
         attempLocal: true,
         localBasePath: path.resolve(
           config.PROJECT_DIR,
-          "ethereum-lists",
-          "contracts"
+          config.ETHEREUM_LIST_LOCAL_PATH
         ),
       }
     );
 
   const spendersFile: DappsFile = {};
   if (files.size > 0) {
-    const projectsFiles = (
-      await listFilesFromDirectory(new URL(ETHEREUMLIST_PROJECTS_URL), false)
-    ).map((file) => file.path);
-
-    console.log("Ethereum list project list", projectsFiles);
-
-    const fileCache: Record<string, EthereumListProjectFileContent> = {};
-
+    const projectFiles =
+      await downloadAllDirectoryFilesFromURL<EthereumListProjectFileContent>(
+        new URL(ETHEREUMLIST_PROJECTS_URL),
+        {
+          recursive: false,
+          attempLocal: true,
+          localBasePath: path.resolve(
+            config.PROJECT_DIR,
+            config.ETHEREUM_LIST_LOCAL_PATH
+          ),
+        }
+      );
     for (const path of files.keys()) {
       const { chainId, contractAddress } = decodePath(path);
       const fileContent = files.get(path);
       if (fileContent?.project) {
-        let projectData: EthereumListProjectFileContent | undefined;
-        const fileName = projectsFiles.find((projectFile) =>
-          projectFile.match(fileContent.project)
+        const projectData = projectFiles.get(
+          toProjectFilePath(fileContent.project)
         );
 
-        if (fileName) {
-          try {
-            if (fileCache[fileName]) {
-              projectData = fileCache[fileName];
-            } else {
-              projectData =
-                await fetchPublicFile<EthereumListProjectFileContent>(
-                  new URL(ETHEREUMLIST_PROJECTS_URL),
-                  fileName
-                );
-              fileCache[fileName] = projectData;
-            }
-          } catch (e) {
-            console.warn("Error fetching project details", fileName, e);
-          }
-        }
-
-        const spenderKey = spenderNameToKey(fileContent.project);
+        const spenderKey = dappNameToKey(fileContent.project);
         if (!spendersFile[spenderKey]) {
           spendersFile[spenderKey] = {
             contractAddresses: {

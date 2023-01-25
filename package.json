@@ -1,7 +1,10 @@
 {
-  "name": "spenders",
+  "name": "contracts",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "^18.13.0"
+  },
   "main": "index.ts",
   "scripts": {
     "generate": "ts-node src/index.ts",
@@ -11,13 +14,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^18.11.18",
     "list-github-dir-content": "^3.0.0",
     "node-fetch": "^3.3.0",
     "p-map": "^5.5.0",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
+    "@types/node": "^18.11.18",
     "typescript": "^4.9.4"
   }
 }
