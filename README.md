@@ -18,7 +18,7 @@ Generates a set of known contracts indexed by chain. Contracts are stored in the
 - `revoke.cash` [dapps-contracts list](https://github.com/RevokeCash/revoke.cash/tree/master/public/dapp-contract-list)
 - `ethereum-list` [contracts list](https://github.com/ethereum-lists/contracts) and their project identification
 
-For getting websites images, we uses the `blockwallet/assets` repository.
+For getting websites images, we use the `blockwallet/assets` repository.
 
 ---
 
