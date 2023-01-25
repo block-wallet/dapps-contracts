@@ -60,7 +60,6 @@ export function joinFiles(spendersFiles: DappsFile[]): DappsFile {
       }
     });
   }
-  console.log(baseFile);
   return baseFile;
 }
 
