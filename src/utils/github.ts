@@ -1,6 +1,5 @@
 import listContent from "list-github-dir-content";
-import { DappsFile } from "./typings/types";
-import { escapeFilepath, sleep, URL_PARSER_REGEX } from "./utils/utils";
+import { escapeFilepath, URL_PARSER_REGEX } from "../utils/utils";
 import fs from "fs";
 
 const DEFAULT_CONCURRENCY = 100;
@@ -10,11 +9,13 @@ type DownloadOptions = {
   //numbers of files to download in batch
   concurrency?: number;
   //returns whether the file is cached or not
-  isCached: (filePath: string) => boolean;
+  isCached?: (filePath: string) => boolean;
   //attempt get file from local env
   attempLocal?: boolean;
   //fetch local
   localBasePath?: string;
+  //recursive folder download
+  recursive?: boolean;
 };
 
 const defaultOptions: DownloadOptions = {
@@ -22,6 +23,7 @@ const defaultOptions: DownloadOptions = {
   isCached: (_: string) => false,
   attempLocal: false,
   localBasePath: "",
+  recursive: true,
 };
 
 type File = {
@@ -102,15 +104,15 @@ export async function downloadAllDirectoryFilesFromURL<T>(
   url: URL,
   options: DownloadOptions = defaultOptions
 ): Promise<FilesResponse<T>> {
-  const files = await listFilesFromDirectory(url);
+  const files = await listFilesFromDirectory(url, options.recursive ?? true);
   const controller = new AbortController();
 
   const ret: FilesResponse<T> = new Map<string, T>();
 
   let quantity = 0;
   let quantityToProcess = files.length;
-  const fetchFile = async (file: File, retries = 0) => {
-    if (options.isCached(file.path)) {
+  const fetchFile = async (file: File) => {
+    if (options.isCached && options.isCached(file.path)) {
       quantity++;
       return;
     }
@@ -119,7 +121,6 @@ export async function downloadAllDirectoryFilesFromURL<T>(
     try {
       if (options.attempLocal && options.localBasePath) {
         const localPath = `${options.localBasePath}/${file.path}`;
-        console.log("reading file from local", localPath);
         if (fs.existsSync(localPath)) {
           fileContent = JSON.parse(fs.readFileSync(localPath, "utf-8"));
         }

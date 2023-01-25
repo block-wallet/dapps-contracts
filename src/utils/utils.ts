@@ -9,7 +9,7 @@ export function sleep(ms: number): Promise<void> {
   });
 }
 
-export function spenderNameToKey(name: string): string {
+export function dappNameToKey(name: string): string {
   return name.split(" ").join("_").trim().toLowerCase();
 }
 

@@ -1,7 +1,9 @@
-import { ContractsCache } from "./utils/cache";
-import type { DappsFile } from "./typings/types";
-import { downloadAllDirectoryFilesFromURL } from "./githubDownloader";
-import { spenderNameToKey } from "./utils/utils";
+import { ContractsCache } from "../utils/cache";
+import type { DappsFile } from "../typings/types";
+import { downloadAllDirectoryFilesFromURL } from "../utils/github";
+import { dappNameToKey } from "../utils/utils";
+import path from "path";
+import config from "../../config";
 
 interface RevokeCashFileContent {
   appName: string;
@@ -32,13 +34,18 @@ export async function generate(
         const { chainId, contractAddress } = decodePath(filePath);
         return contractsCache.isCached(chainId, contractAddress);
       },
+      attempLocal: true,
+      localBasePath: path.resolve(
+        config.PROJECT_DIR,
+        config.REVOKE_CASH_LOCAL_PATH
+      ),
     }
   );
   const spendersFile: DappsFile = {};
   for (const path of files.keys()) {
     const { chainId, contractAddress } = decodePath(path);
     const fileContent = files.get(path) as RevokeCashFileContent;
-    const spenderKey = spenderNameToKey(fileContent.appName);
+    const spenderKey = dappNameToKey(fileContent.appName);
     if (!spendersFile[spenderKey]) {
       spendersFile[spenderKey] = {
         contractAddresses: {

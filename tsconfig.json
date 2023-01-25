@@ -19,5 +19,6 @@
         "experimentalDecorators": true,
         "useUnknownInCatchVariables": false,
         "noImplicitAny": false
-    }
+    },
+    "exclude": ["revoke-cash","ethereum-lists"]
 }

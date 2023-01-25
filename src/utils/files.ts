@@ -1,6 +1,12 @@
 import type { DappsFile, Contracts, DappsFileMinified } from "../typings/types";
 import path from "path";
 import config from "../../config";
+import { listFilesFromDirectory } from "./github";
+
+const BLOCK_WALLET_LOGO_PREFIX =
+  "raw.githubusercontent.com/block-wallet/assets/master";
+const BLOCK_WALLET_DAPPS_ASSETS =
+  "https://github.com/block-wallet/assets/tree/master/dapps/";
 
 export function getFilePath(...paths: string[]): string {
   return path.resolve(config.PROJECT_DIR, ...paths);
@@ -54,7 +60,8 @@ export function joinFiles(spendersFiles: DappsFile[]): DappsFile {
       }
     });
   }
-  return spendersFiles[0];
+  console.log(baseFile);
+  return baseFile;
 }
 
 export function minify(spendersFile: DappsFile): DappsFileMinified {
@@ -67,4 +74,40 @@ export function minify(spendersFile: DappsFile): DappsFileMinified {
       },
     };
   }, {} as DappsFileMinified);
+}
+
+function inferLogoFromHostname(hostname: string, files: string[]): string {
+  return (
+    files.find((fileName) => {
+      return fileName.split("/")[1].match(hostname);
+    }) || ""
+  );
+}
+
+export async function enrichDappsFile(
+  dappsFile: DappsFile
+): Promise<DappsFile> {
+  const enrichedFile: DappsFile = {};
+  const dappsLogos = (
+    await listFilesFromDirectory(new URL(BLOCK_WALLET_DAPPS_ASSETS), false)
+  ).map((file) => file.path);
+  for (const dapp in dappsFile) {
+    const dappData = dappsFile[dapp];
+    let logoURI = dappData.logoURI;
+    if (!logoURI && dappData.websiteURL) {
+      const inferredLogo = inferLogoFromHostname(
+        new URL(dappData.websiteURL).hostname,
+        dappsLogos
+      );
+      if (inferredLogo) {
+        logoURI = `${BLOCK_WALLET_LOGO_PREFIX}/${inferredLogo}`;
+      }
+    }
+
+    enrichedFile[dapp] = {
+      ...dappData,
+      logoURI,
+    };
+  }
+  return enrichedFile;
 }

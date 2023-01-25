@@ -1,11 +1,12 @@
-import { generate as generateRevokeCash } from "./revokecash";
-import { generate as generateEthereumList } from "./ethereumlist";
+import { generate as generateRevokeCash } from "./data-sources/revoke-cash";
+import { generate as generateEthereumList } from "./data-sources/ethereum-lists";
 import fs from "fs";
-import { getFilePath, joinFiles } from "./utils/fileUtils";
+import { enrichDappsFile, getFilePath, joinFiles } from "./utils/files";
 import { getCachedContracts } from "./utils/cache";
 import type { DappsFile } from "./typings/types";
 import { DAPPS_FILE_NAME, KNOWN_DAPPS_FILE_NAME } from "./utils/constants";
-import { generateFolders } from "./generateFolders";
+import { generateFolders } from "./generate-folders";
+import config from "../config";
 
 function delimitedConsoleLog(message: string) {
   console.log(
@@ -40,20 +41,22 @@ async function build() {
   console.log("1. Generating cache: \n");
   const cachedContracts = getCachedContracts(oldDappsFile);
   console.log(
-    `Generated cached contracts for chains ${cachedContracts.keysAsLog()} \n\n`
+    `Generated cached contracts of type ${cachedContracts.name} \n\n`
   );
 
-  console.log(`2. Processing Ethereum list files: \n`);
+  console.log(`2. Processing data-sources`);
+
+  console.log(`2.1. ethereum-lists contracts: \n`);
 
   const ethList = await generateEthereumList(cachedContracts);
 
   console.log(
-    `Process ended for ethereumlist. New dapps ${
+    `Process ended for ethereum-lists. New dapps ${
       Object.keys(ethList).length
     }\n\n`
   );
 
-  console.log(`3. Processing revoke.cash files: \n`);
+  console.log(`2.2. revoke.cash contracts: \n`);
   const revokeCash = await generateRevokeCash(cachedContracts);
 
   console.log(
@@ -62,24 +65,24 @@ async function build() {
     }\n\n`
   );
 
-  const updatedDappsFile = joinFiles([
-    knownDappsFile,
-    oldDappsFile,
-    revokeCash,
-    ethList,
-  ]);
-
-  console.log(`4. Writing dapps file... \n`);
-  fs.writeFileSync(
-    getDappsFilePath(),
-    JSON.stringify(updatedDappsFile, null, 2)
+  const updatedDappsFile = await enrichDappsFile(
+    joinFiles([knownDappsFile, oldDappsFile, revokeCash, ethList])
   );
 
-  console.log(`Dapps file written\n\n`);
+  if (config.WRITE_FINAL_CONTRACTS_FILE) {
+    console.log(`3. Writing dapps file... \n`);
+    fs.writeFileSync(
+      getDappsFilePath(),
+      JSON.stringify(updatedDappsFile, null, 2)
+    );
+    console.log(`Dapps file written\n\n`);
+  }
 
-  console.log(`5. Generating contracts folder... \n`);
-
-  generateFolders(updatedDappsFile);
+  if (config.GENERATE_CONTRACTS_FOLDER) {
+    console.log(`3. Generating contracts folder... \n`);
+    generateFolders(updatedDappsFile);
+    console.log(`Contracts folder updated\n\n`);
+  }
 
   delimitedConsoleLog("FINISHED");
 }
