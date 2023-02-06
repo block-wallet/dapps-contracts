@@ -41,46 +41,60 @@
         "name": "Li.Fi",
         "contractAddresses": {
             "1": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "10": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "56": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "100": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "122": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "66": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "137": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "250": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "1284": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "1285": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "42161": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "42220": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "43114": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ],
             "1666600000": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
             ]
         },
         "logoURI": ""
