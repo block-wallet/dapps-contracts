@@ -17,7 +17,7 @@ interface EthereumListContractFileContent {
 
 interface EthereumListProjectFileContent {
   name: string;
-  website: string;
+  website?: string;
 }
 
 const ETHEREUMLIST_CONTRACTS_URL =
@@ -25,6 +25,8 @@ const ETHEREUMLIST_CONTRACTS_URL =
 
 const ETHEREUMLIST_PROJECTS_URL =
   "https://github.com/ethereum-lists/contracts/tree/main/projects";
+
+const VERSION_REGEX = /_?v\d/gim;
 
 //Decodes path of the shape: something/something/chainId/contract.json
 export function decodePath(path: string): {
@@ -40,6 +42,46 @@ export function decodePath(path: string): {
 
 function toProjectFilePath(fileName: string) {
   return `projects/${fileName}.json`;
+}
+
+function isVersioned(name: string): boolean {
+  //regex checks that the file name contains a "v1,v2...vn"
+  return name.match(VERSION_REGEX) !== null;
+}
+
+function removeVersionFromName(nameWithVersion: string): string {
+  return nameWithVersion.replaceAll(VERSION_REGEX, "");
+}
+
+function joinVersionedProjects(
+  projectFiles: Map<string, EthereumListProjectFileContent>
+): Map<string, EthereumListProjectFileContent> {
+  const joinedVersionedFiles: Map<string, EthereumListProjectFileContent> =
+    new Map(projectFiles);
+  for (const filePath of joinedVersionedFiles.keys()) {
+    const pathSplitted = filePath.split("/");
+    const projectName = pathSplitted[pathSplitted.length - 1];
+    let projectWithoutVersionContent:
+      | EthereumListProjectFileContent
+      | undefined;
+    if (isVersioned(projectName)) {
+      const projectWithoutVersion = removeVersionFromName(projectName);
+      pathSplitted[pathSplitted.length - 1] = projectWithoutVersion;
+      const projectWithoutVersionPath = pathSplitted.join("/");
+      projectWithoutVersionContent = joinedVersionedFiles.get(
+        projectWithoutVersionPath
+      );
+    }
+    const versionedFile = joinedVersionedFiles.get(filePath);
+    if (versionedFile) {
+      joinedVersionedFiles.set(filePath, {
+        name: versionedFile.name,
+        website:
+          versionedFile?.website || projectWithoutVersionContent?.website,
+      });
+    }
+  }
+  return joinedVersionedFiles;
 }
 
 export async function generate(
@@ -59,12 +101,13 @@ export async function generate(
           config.PROJECT_DIR,
           config.ETHEREUM_LIST_LOCAL_PATH
         ),
+        localFolderPath: "contracts",
       }
     );
 
   const spendersFile: DappsFile = {};
   if (files.size > 0) {
-    const projectFiles =
+    const projectFiles = joinVersionedProjects(
       await downloadAllDirectoryFilesFromURL<EthereumListProjectFileContent>(
         new URL(ETHEREUMLIST_PROJECTS_URL),
         {
@@ -74,8 +117,11 @@ export async function generate(
             config.PROJECT_DIR,
             config.ETHEREUM_LIST_LOCAL_PATH
           ),
+          localFolderPath: "projects",
         }
-      );
+      )
+    );
+
     for (const path of files.keys()) {
       const { chainId, contractAddress } = decodePath(path);
       const fileContent = files.get(path);
