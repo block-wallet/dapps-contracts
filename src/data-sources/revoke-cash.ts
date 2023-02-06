@@ -39,6 +39,7 @@ export async function generate(
         config.PROJECT_DIR,
         config.REVOKE_CASH_LOCAL_PATH
       ),
+      localFolderPath: "public/dapp-contract-list",
     }
   );
   const spendersFile: DappsFile = {};

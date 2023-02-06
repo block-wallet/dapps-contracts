@@ -2,7 +2,38 @@
     "1inch": {
         "websiteURL": "https://1inch.io/",
         "name": "1inch",
-        "contractAddresses": {},
+        "contractAddresses": {
+            "1": [
+                "0x1111111254eeb25477b68fb85ed929f73a960582"
+            ],
+            "10": [
+                "0x1111111254eeb25477b68fb85ed929f73a960582"
+            ],
+            "56": [
+                "0x1111111254eeb25477b68fb85ed929f73a960582"
+            ],
+            "100": [
+                "0x1111111254eeb25477b68fb85ed929f73a960582"
+            ],
+            "137": [
+                "0x1111111254eeb25477b68fb85ed929f73a960582"
+            ],
+            "250": [
+                "0x1111111254eeb25477b68fb85ed929f73a960582"
+            ],
+            "8217": [
+                "0x1111111254eeb25477b68fb85ed929f73a960582"
+            ],
+            "42161": [
+                "0x1111111254eeb25477b68fb85ed929f73a960582"
+            ],
+            "43114": [
+                "0x1111111254eeb25477b68fb85ed929f73a960582"
+            ],
+            "1313161554": [
+                "0x1111111254eeb25477b68fb85ed929f73a960582"
+            ]
+        },
         "logoURI": "https://raw.githubusercontent.com/block-wallet/assets/master/dapps/app.1inch.io.png"
     },
     "li.fi": {
@@ -53,5 +84,14 @@
             ]
         },
         "logoURI": ""
+    },
+    "permit2": {
+        "name": "Uniswap Permit2",
+        "websiteURL": "https://uniswap.org/",
+        "contractAddresses": {}
+    },
+    "paraswap": {
+        "websiteURL": "https://paraswap.io/",
+        "contractAddresses": {}
     }
 }

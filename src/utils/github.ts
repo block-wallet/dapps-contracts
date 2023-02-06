@@ -1,9 +1,10 @@
 import listContent from "list-github-dir-content";
 import { escapeFilepath, URL_PARSER_REGEX } from "../utils/utils";
 import fs from "fs";
+import { listDirFilesRecursive } from "./files";
 
 const DEFAULT_CONCURRENCY = 100;
-type FilesResponse<T> = Map<string, T>;
+export type FilesResponse<T> = Map<string, T>;
 
 type DownloadOptions = {
   //numbers of files to download in batch
@@ -12,8 +13,10 @@ type DownloadOptions = {
   isCached?: (filePath: string) => boolean;
   //attempt get file from local env
   attempLocal?: boolean;
-  //fetch local
+  //root of the repository
   localBasePath?: string;
+  //local folder to find contracts
+  localFolderPath?: string;
   //recursive folder download
   recursive?: boolean;
 };
@@ -23,6 +26,7 @@ const defaultOptions: DownloadOptions = {
   isCached: (_: string) => false,
   attempLocal: false,
   localBasePath: "",
+  localFolderPath: "",
   recursive: true,
 };
 
@@ -56,15 +60,6 @@ export async function listFilesFromDirectory(
   recursive = true
 ): Promise<File[]> {
   const { user, repository, ref, dir } = parseGithubURL(url);
-  if (recursive) {
-    return listContent.viaTreesApi({
-      user,
-      repository,
-      ref,
-      directory: decodeURIComponent(dir),
-      getFullData: true,
-    }) as Promise<File[]>;
-  }
 
   return listContent.viaContentsApi({
     user,
@@ -104,7 +99,25 @@ export async function downloadAllDirectoryFilesFromURL<T>(
   url: URL,
   options: DownloadOptions = defaultOptions
 ): Promise<FilesResponse<T>> {
-  const files = await listFilesFromDirectory(url, options.recursive ?? true);
+  let files: File[] | undefined;
+  try {
+    if (options.localBasePath && fs.existsSync(options.localBasePath)) {
+      const localFiles = listDirFilesRecursive(
+        options.localBasePath,
+        options.localFolderPath || ""
+      );
+      files = localFiles.map((localFile) => ({
+        path: localFile,
+      }));
+    }
+  } catch (e) {
+    console.warn("Something went wrong while parsing local files", e);
+  }
+
+  if (!files) {
+    files = await listFilesFromDirectory(url, options.recursive ?? true);
+  }
+
   const controller = new AbortController();
 
   const ret: FilesResponse<T> = new Map<string, T>();
