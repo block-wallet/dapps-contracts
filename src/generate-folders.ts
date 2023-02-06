@@ -1,6 +1,7 @@
 import fs from "fs";
 import type { DappsFile } from "src/typings/types";
 import path from "path";
+import { toChecksumAddress } from "ethereumjs-util";
 const DAPP_CONTRACTS_PREFIX = "contracts";
 
 function generateDirectoryPath(chainId: string): string {
@@ -8,7 +9,9 @@ function generateDirectoryPath(chainId: string): string {
 }
 
 function generatePath(chainId: string, contractAddress: string): string {
-  return `${generateDirectoryPath(chainId)}/${contractAddress}.json`;
+  return `${generateDirectoryPath(chainId)}/${toChecksumAddress(
+    contractAddress
+  )}.json`;
 }
 
 function ensureDirectoryExistence(filePath: string) {
