@@ -2,6 +2,7 @@ import type { DappsFile, Contracts, DappsFileMinified } from "../typings/types";
 import path from "path";
 import config from "../../config";
 import { listFilesFromDirectory } from "./github";
+import fs from "fs";
 
 const BLOCK_WALLET_LOGO_PREFIX =
   "raw.githubusercontent.com/block-wallet/assets/master";
@@ -47,6 +48,7 @@ export function joinFiles(spendersFiles: DappsFile[]): DappsFile {
       } else {
         baseFile[spenderKey] = {
           ...baseFile[spenderKey],
+          name: baseFile[spenderKey].name || currentFile[spenderKey].name,
           logoURI:
             baseFile[spenderKey].logoURI || currentFile[spenderKey].logoURI,
           websiteURL:
@@ -109,4 +111,32 @@ export async function enrichDappsFile(
     };
   }
   return enrichedFile;
+}
+
+function readAllDirRecursive(
+  dirPath: string,
+  localFolder: string,
+  files: string[] = []
+): string[] {
+  const dirFiles = fs.readdirSync(dirPath);
+  dirFiles.forEach((dirOrFile: string) => {
+    if (fs.statSync(dirPath + "/" + dirOrFile).isDirectory()) {
+      files = readAllDirRecursive(
+        dirPath + "/" + dirOrFile,
+        localFolder + "/" + dirOrFile,
+        files
+      );
+    } else {
+      files.push(localFolder + "/" + dirOrFile);
+    }
+  });
+  return files;
+}
+
+export function listDirFilesRecursive(
+  basePath: string,
+  localFolder: string
+): string[] {
+  const dirPath = path.resolve(basePath, localFolder);
+  return readAllDirRecursive(dirPath, localFolder);
 }

@@ -1,7 +1,6 @@
 import fs from "fs";
 import type { DappsFile } from "src/typings/types";
 import path from "path";
-import { listFilesFromDirectory } from "./utils/github";
 const DAPP_CONTRACTS_PREFIX = "contracts";
 
 function generateDirectoryPath(chainId: string): string {
