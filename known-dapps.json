@@ -107,5 +107,10 @@
     "paraswap": {
         "websiteURL": "https://paraswap.io/",
         "contractAddresses": {}
+    },
+    "matic": {
+        "name": "Polygon Bridge",
+        "websiteURL": "https://wallet.polygon.technology/",
+        "contractAddresses": {}
     }
 }
