@@ -30,13 +30,19 @@ export async function generateFolders(dappsFile: DappsFile) {
       for (const contract of dappData.contractAddresses[strChainId]) {
         const filePath = generatePath(strChainId, contract);
         ensureDirectoryExistence(filePath);
+        let persistedFile: DappsFile | undefined;
+        if (fs.existsSync(filePath)) {
+          persistedFile = JSON.parse(
+            fs.readFileSync(filePath, "utf8")
+          ) as DappsFile;
+        }
         fs.writeFileSync(
           filePath,
           JSON.stringify(
             {
-              name: dappData.name,
-              logoURI: dappData.logoURI,
-              websiteURL: dappData.websiteURL,
+              name: dappData.name || persistedFile?.name,
+              logoURI: dappData.logoURI || persistedFile?.logoURI,
+              websiteURL: dappData.websiteURL || persistedFile?.websiteURL,
             },
             null,
             2
