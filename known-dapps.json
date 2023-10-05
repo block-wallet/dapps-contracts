@@ -1,116 +1,126 @@
 {
-    "1inch": {
-        "websiteURL": "https://1inch.io/",
-        "name": "1inch",
-        "contractAddresses": {
-            "1": [
-                "0x1111111254EEB25477B68fb85Ed929f73A960582"
-            ],
-            "10": [
-                "0x1111111254EEB25477B68fb85Ed929f73A960582"
-            ],
-            "56": [
-                "0x1111111254EEB25477B68fb85Ed929f73A960582"
-            ],
-            "100": [
-                "0x1111111254EEB25477B68fb85Ed929f73A960582"
-            ],
-            "137": [
-                "0x1111111254EEB25477B68fb85Ed929f73A960582"
-            ],
-            "250": [
-                "0x1111111254EEB25477B68fb85Ed929f73A960582"
-            ],
-            "8217": [
-                "0x1111111254EEB25477B68fb85Ed929f73A960582"
-            ],
-            "42161": [
-                "0x1111111254EEB25477B68fb85Ed929f73A960582"
-            ],
-            "43114": [
-                "0x1111111254EEB25477B68fb85Ed929f73A960582"
-            ],
-            "1313161554": [
-                "0x1111111254EEB25477B68fb85Ed929f73A960582"
-            ]
-        },
-        "logoURI": "https://raw.githubusercontent.com/block-wallet/assets/master/dapps/app.1inch.io.png"
+  "1inch": {
+    "websiteURL": "https://1inch.io/",
+    "name": "1inch",
+    "contractAddresses": {
+      "1": ["0x1111111254EEB25477B68fb85Ed929f73A960582"],
+      "10": ["0x1111111254EEB25477B68fb85Ed929f73A960582"],
+      "56": ["0x1111111254EEB25477B68fb85Ed929f73A960582"],
+      "100": ["0x1111111254EEB25477B68fb85Ed929f73A960582"],
+      "137": ["0x1111111254EEB25477B68fb85Ed929f73A960582"],
+      "250": ["0x1111111254EEB25477B68fb85Ed929f73A960582"],
+      "8217": ["0x1111111254EEB25477B68fb85Ed929f73A960582"],
+      "42161": ["0x1111111254EEB25477B68fb85Ed929f73A960582"],
+      "43114": ["0x1111111254EEB25477B68fb85Ed929f73A960582"],
+      "1313161554": ["0x1111111254EEB25477B68fb85Ed929f73A960582"]
     },
-    "li.fi": {
-        "websiteURL": "https://li.fi/",
-        "name": "Li.Fi",
-        "contractAddresses": {
-            "1": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "10": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "56": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "100": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "122": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "66": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "137": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "250": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "1284": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "1285": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "42161": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "42220": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "43114": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ],
-            "1666600000": [
-                "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
-                "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
-            ]
-        },
-        "logoURI": ""
+    "logoURI": "https://raw.githubusercontent.com/block-wallet/assets/master/dapps/app.1inch.io.png"
+  },
+  "li.fi": {
+    "websiteURL": "https://li.fi/",
+    "name": "Li.Fi",
+    "contractAddresses": {
+      "1": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "10": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "56": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "100": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "122": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "66": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "137": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "250": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "1284": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "1285": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "42161": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "42220": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "43114": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ],
+      "1666600000": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+        "0x362fA9D0bCa5D19f743Db50738345ce2b40eC99f"
+      ]
     },
-    "permit2": {
-        "name": "Uniswap Permit2",
-        "websiteURL": "https://uniswap.org/",
-        "contractAddresses": {}
+    "logoURI": ""
+  },
+  "permit2": {
+    "name": "Uniswap Permit2",
+    "websiteURL": "https://uniswap.org/",
+    "contractAddresses": {}
+  },
+  "paraswap": {
+    "websiteURL": "https://paraswap.io/",
+    "contractAddresses": {}
+  },
+  "matic": {
+    "name": "Polygon Bridge",
+    "websiteURL": "https://wallet.polygon.technology/",
+    "contractAddresses": {}
+  },
+  "openocean": {
+    "name": "OpenOcean",
+    "websiteURL": "https://app.openocean.finance/",
+    "contractAddresses": {
+      "1": ["0x6352a56caadc4f1e25cd6c75970fa768a3304e64"],
+      "56": ["0x6352a56caadc4f1e25cd6c75970fa768a3304e64"],
+      "137": ["0x6352a56caadc4f1e25cd6c75970fa768a3304e64"],
+      "10": ["0x6352a56caadc4f1e25cd6c75970fa768a3304e64"],
+      "42161": ["0x6352a56caadc4f1e25cd6c75970fa768a3304e64"],
+      "43114": ["0x6352a56caadc4f1e25cd6c75970fa768a3304e64"],
+      "250": ["0x6352a56caadc4f1e25cd6c75970fa768a3304e64"],
+      "100": ["0x6352a56caadc4f1e25cd6c75970fa768a3304e64"],
+      "324": ["0x36A1aCbbCAfca2468b85011DDD16E7Cb4d673230"],
+      "1101": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "8453": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "59140": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "288": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "1285": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "1313161554": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "25": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "1666600000": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "2222": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "42220": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "40": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "58": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "128": ["0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b"],
+      "66": ["0xc0006Be82337585481044a7d11941c0828FFD2D4"]
     },
-    "paraswap": {
-        "websiteURL": "https://paraswap.io/",
-        "contractAddresses": {}
-    },
-    "matic": {
-        "name": "Polygon Bridge",
-        "websiteURL": "https://wallet.polygon.technology/",
-        "contractAddresses": {}
-    }
+    "logoURI": "https://github.com/block-wallet/assets/blob/master/dapps/openocean.finance.png"
+  }
 }
