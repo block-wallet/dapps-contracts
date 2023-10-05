@@ -18,7 +18,7 @@ rm -rf ethereum-lists
 rm -rf revoke-cash
 
 printf "cloning into revoke-cash...:\n"
-git clone git@github.com:RevokeCash/revoke.cash.git revoke-cash
+git clone git@github.com:RevokeCash/whois.git revoke-cash
 
 printf "\ncloning into ethereum-lists...:\n"
 git clone git@github.com:ethereum-lists/contracts.git ethereum-lists
